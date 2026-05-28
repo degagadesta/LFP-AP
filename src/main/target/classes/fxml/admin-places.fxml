@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.lfp.ui.AdminPlacesController"
+            stylesheets="@../css/style.css"
+            styleClass="root">
+    
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox styleClass="navbar" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            
+            <Label text="WorkSpot Admin" styleClass="logo"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Button text="Dashboard" onAction="#handleDashboard" styleClass="nav-button"/>
+            <Button text="Manage Places" styleClass="nav-button-active"/>
+            <Button text="Manage Reports" onAction="#handleManageReports" styleClass="nav-button"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="nav-button"/>
+        </HBox>
+    </top>
+    
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="20" styleClass="content-container">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+            
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Manage Places" styleClass="page-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="statusFilter" promptText="Filter by Status" onAction="#handleFilterChange"/>
+            </HBox>
+            
+            <!-- Loading Indicator -->
+            <ProgressIndicator fx:id="loadingIndicator" visible="false" managed="false"/>
+            
+            <!-- Error/Success Messages -->
+            <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"/>
+            <Label fx:id="successLabel" styleClass="success-label" visible="false" managed="false"/>
+            
+            <!-- Places Table -->
+            <TableView fx:id="placesTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+                    <TableColumn fx:id="categoryColumn" text="Category" prefWidth="120"/>
+                    <TableColumn fx:id="locationColumn" text="Location" prefWidth="200"/>
+                    <TableColumn fx:id="wifiColumn" text="WiFi" prefWidth="80"/>
+                    <TableColumn fx:id="serviceColumn" text="Service" prefWidth="80"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="250"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
