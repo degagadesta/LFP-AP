@@ -166,6 +166,16 @@ public class PlaceDetailController {
             Scene scene = new Scene(root, 1200, 800);
             stage.setScene(scene);
             stage.setTitle("LFP - Home");
+            stage.setResizable(true);
+            stage.setMinWidth(1000);
+            stage.setMinHeight(700);
+            
+            // Add F11 fullscreen toggle
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("F11")) {
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            });
         } catch (Exception e) {
             showStatus("Failed to go back");
         }

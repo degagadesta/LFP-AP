@@ -1,0 +1,89 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║              RESIZABLE SCREENS & FULLSCREEN SUPPORT ✅                   ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ WINDOW CONTROLS                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+
+✅ RESIZE WINDOW:
+   • Drag window edges
+   • Drag window corners
+   • Click maximize button
+   • Double-click title bar
+
+✅ FULLSCREEN MODE:
+   • Press F11 to enter fullscreen
+   • Press F11 again to exit
+   • Press ESC to exit fullscreen
+
+✅ MINIMUM SIZE:
+   • Width: 800px
+   • Height: 600px
+   • Prevents too-small windows
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ KEYBOARD SHORTCUTS                                                       │
+└──────────────────────────────────────────────────────────────────────────┘
+
+F11         Toggle fullscreen mode
+ESC         Exit fullscreen mode
+Alt+F4      Close application
+Alt+Space   Window menu (Windows)
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ SCREEN SIZES                                                             │
+└──────────────────────────────────────────────────────────────────────────┘
+
+Screen              Default Size    Minimum Size    Resizable   Fullscreen
+─────────────────────────────────────────────────────────────────────────
+Login               900 x 600       800 x 600       ✅ Yes      ✅ F11
+Home                1200 x 800      1000 x 700      ✅ Yes      ✅ F11
+Admin Dashboard     1200 x 800      1000 x 700      ✅ Yes      ✅ F11
+Admin Places        1200 x 800      1000 x 700      ✅ Yes      ✅ F11
+Admin Reports       1200 x 800      1000 x 700      ✅ Yes      ✅ F11
+Contribute          900 x 700       800 x 600       ✅ Yes      ✅ F11
+Favorites           1200 x 800      1000 x 700      ✅ Yes      ✅ F11
+Place Detail        900 x 700       800 x 600       ✅ Yes      ✅ F11
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ FEATURES                                                                 │
+└──────────────────────────────────────────────────────────────────────────┘
+
+✅ All screens are resizable
+✅ Fullscreen mode on all screens (F11)
+✅ Minimum size constraints
+✅ Content adapts to window size
+✅ Smooth resizing experience
+✅ Works with multiple monitors
+✅ Professional modern UI
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ HOW TO USE                                                               │
+└──────────────────────────────────────────────────────────────────────────┘
+
+1. START APPLICATION:
+   mvn exec:java "-Dexec.mainClass=com.lfp.client.LFPClientApp"
+
+2. RESIZE WINDOW:
+   • Drag any edge or corner
+   • Or click maximize button
+
+3. FULLSCREEN:
+   • Press F11 on any screen
+   • Press F11 or ESC to exit
+
+4. NAVIGATE:
+   • All screens maintain resizable settings
+   • F11 works on every screen
+
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    ALL SCREENS NOW RESIZABLE! 🎉                         ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Read RESIZABLE_SCREENS.md for detailed documentation.

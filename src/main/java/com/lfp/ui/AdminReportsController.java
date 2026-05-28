@@ -78,40 +78,46 @@ public class AdminReportsController {
             
             {
                 approveBtn.setStyle("-fx-background-color: #f44336; -fx-text-fill: white; " +
-                                   "-fx-padding: 5 10; -fx-font-size: 11px;");
+                                   "-fx-padding: 5 10; -fx-font-size: 11px; -fx-cursor: hand;");
                 rejectBtn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; " +
-                                  "-fx-padding: 5 10; -fx-font-size: 11px;");
+                                  "-fx-padding: 5 10; -fx-font-size: 11px; -fx-cursor: hand;");
                 
                 container.setAlignment(Pos.CENTER);
                 container.getChildren().addAll(approveBtn, rejectBtn);
                 
                 approveBtn.setOnAction(e -> {
-                    Report report = getTableView().getItems().get(getIndex());
-                    handleApproveReport(report);
+                    Report report = getTableRow().getItem();
+                    if (report != null) {
+                        handleApproveReport(report);
+                    }
                 });
                 
                 rejectBtn.setOnAction(e -> {
-                    Report report = getTableView().getItems().get(getIndex());
-                    handleRejectReport(report);
+                    Report report = getTableRow().getItem();
+                    if (report != null) {
+                        handleRejectReport(report);
+                    }
                 });
             }
             
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
+                if (empty || getTableRow() == null || getTableRow().getItem() == null) {
                     setGraphic(null);
                 } else {
-                    Report report = getTableView().getItems().get(getIndex());
+                    Report report = getTableRow().getItem();
                     
                     // Show buttons only for pending reports
                     boolean isPending = report.getStatus() == ReportStatus.PENDING;
-                    approveBtn.setVisible(isPending);
-                    approveBtn.setManaged(isPending);
-                    rejectBtn.setVisible(isPending);
-                    rejectBtn.setManaged(isPending);
                     
-                    setGraphic(isPending ? container : null);
+                    if (isPending) {
+                        setGraphic(container);
+                    } else {
+                        Label statusLabel = new Label(report.getStatus().toString());
+                        statusLabel.setStyle("-fx-text-fill: #7f8c8d; -fx-font-style: italic;");
+                        setGraphic(statusLabel);
+                    }
                 }
             }
         });

@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.rmi.registry.LocateRegistry;
@@ -33,12 +34,45 @@ public class LoginController {
     @FXML private ProgressIndicator registerLoading;
     @FXML private Button loginButton;
     @FXML private Button registerButton;
+    @FXML private Button loginTab;
+    @FXML private Button registerTab;
+    @FXML private VBox loginForm;
+    @FXML private VBox registerForm;
     
     private UserService userService;
     
     @FXML
     public void initialize() {
         connectToRMI();
+        showLoginForm(); // Show login form by default
+    }
+    
+    @FXML
+    private void showLoginForm() {
+        loginForm.setVisible(true);
+        registerForm.setVisible(false);
+        
+        // Update tab styles
+        loginTab.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15 60; -fx-background-radius: 10 0 0 0; -fx-cursor: hand; -fx-border-width: 0;");
+        registerTab.setStyle("-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15 60; -fx-background-radius: 0 10 0 0; -fx-cursor: hand; -fx-border-width: 0;");
+        
+        // Clear errors
+        hideLoginError();
+        hideRegisterMessages();
+    }
+    
+    @FXML
+    private void showRegisterForm() {
+        loginForm.setVisible(false);
+        registerForm.setVisible(true);
+        
+        // Update tab styles
+        loginTab.setStyle("-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15 60; -fx-background-radius: 10 0 0 0; -fx-cursor: hand; -fx-border-width: 0;");
+        registerTab.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15 60; -fx-background-radius: 0 10 0 0; -fx-cursor: hand; -fx-border-width: 0;");
+        
+        // Clear errors
+        hideLoginError();
+        hideRegisterMessages();
     }
     
     private void connectToRMI() {
@@ -149,23 +183,17 @@ public class LoginController {
         setRegisterFormEnabled(false);
         showRegisterLoading(true);
         
-        Task<Integer> task = new Task<>() {
+        Task<User> task = new Task<>() {
             @Override
-            protected Integer call() throws Exception {
-                User newUser = new User();
-                newUser.setUsername(username);
-                newUser.setEmail(email);
-                newUser.setPassword(password);
-                newUser.setAdmin(false);
-                
-                return userService.register(newUser);
+            protected User call() throws Exception {
+                return userService.register(username, email, password);
             }
         };
         
         task.setOnSucceeded(e -> {
             Platform.runLater(() -> {
-                int userId = task.getValue();
-                if (userId > 0) {
+                User registeredUser = task.getValue();
+                if (registeredUser != null) {
                     showRegisterSuccess("Registration successful! You can now login.");
                     clearRegisterForm();
                 } else {
@@ -196,6 +224,17 @@ public class LoginController {
             Scene scene = new Scene(root, 1200, 800);
             stage.setScene(scene);
             stage.setTitle("LFP - Home");
+            stage.setResizable(true);
+            stage.setMaximized(false);
+            stage.setMinWidth(1000);
+            stage.setMinHeight(700);
+            
+            // Add F11 fullscreen toggle
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("F11")) {
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            });
         } catch (Exception e) {
             showLoginError("Failed to load home screen");
         }
@@ -210,6 +249,17 @@ public class LoginController {
             Scene scene = new Scene(root, 1200, 800);
             stage.setScene(scene);
             stage.setTitle("LFP - Admin Dashboard");
+            stage.setResizable(true);
+            stage.setMaximized(false);
+            stage.setMinWidth(1000);
+            stage.setMinHeight(700);
+            
+            // Add F11 fullscreen toggle
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("F11")) {
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            });
         } catch (Exception e) {
             showLoginError("Failed to load admin dashboard");
         }

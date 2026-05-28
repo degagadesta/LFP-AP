@@ -111,6 +111,10 @@ public class User implements Serializable {
         return role == UserRole.ADMIN;
     }
     
+    public void setAdmin(boolean admin) {
+        this.role = admin ? UserRole.ADMIN : UserRole.USER;
+    }
+    
     public boolean canLogin() {
         return !isBlocked;
     }

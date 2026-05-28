@@ -128,9 +128,19 @@ public class HomeController {
             Parent root = loader.load();
             
             Stage stage = (Stage) searchField.getScene().getWindow();
-            Scene scene = new Scene(root, 800, 700);
+            Scene scene = new Scene(root, 900, 700);
             stage.setScene(scene);
             stage.setTitle("LFP - Contribute Place");
+            stage.setResizable(true);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
+            
+            // Add F11 fullscreen toggle
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("F11")) {
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            });
         } catch (Exception e) {
             showError("Failed to load contribute screen");
         }
@@ -146,6 +156,16 @@ public class HomeController {
             Scene scene = new Scene(root, 1200, 800);
             stage.setScene(scene);
             stage.setTitle("LFP - My Favorites");
+            stage.setResizable(true);
+            stage.setMinWidth(1000);
+            stage.setMinHeight(700);
+            
+            // Add F11 fullscreen toggle
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("F11")) {
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            });
         } catch (Exception e) {
             showError("Failed to load favorites screen");
         }
@@ -160,9 +180,19 @@ public class HomeController {
             Parent root = loader.load();
             
             Stage stage = (Stage) searchField.getScene().getWindow();
-            Scene scene = new Scene(root, 500, 700);
+            Scene scene = new Scene(root, 900, 600);
             stage.setScene(scene);
             stage.setTitle("LFP - Login");
+            stage.setResizable(true);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
+            
+            // Add F11 fullscreen toggle
+            scene.setOnKeyPressed(event -> {
+                if (event.getCode().toString().equals("F11")) {
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            });
         } catch (Exception e) {
             showError("Failed to logout");
         }

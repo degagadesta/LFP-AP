@@ -388,11 +388,12 @@ public class LFPClient {
             System.out.println("─".repeat(60));
             
             for (var report : reports) {
+                String reportedBy = report.getReportedBy();
                 System.out.println(String.format("%-5d %-20s %-15s %-12s",
                     report.getId(),
                     report.getPlaceName() != null ? 
                         (report.getPlaceName().length() > 20 ? report.getPlaceName().substring(0, 17) + "..." : report.getPlaceName()) : "N/A",
-                    report.getReportedBy() != null ? report.getReportedBy() : "N/A",
+                    reportedBy != null ? reportedBy : "User " + report.getUserId(),
                     report.getStatus()));
             }
             System.out.println("\nTotal reports: " + reports.size());
@@ -424,3 +425,6 @@ public class LFPClient {
         }
     }
 }
+//mvn exec:java "-Dexec.mainClass=com.lfp.client.LFPClientApp"
+//.\RUN_SERVER.bat
+

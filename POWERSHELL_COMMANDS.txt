@@ -1,0 +1,78 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║              POWERSHELL COMMANDS - COPY AND PASTE                        ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+🎯 IMPORTANT: In PowerShell, always use .\ before .bat files!
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: Setup Database (Creates Test Users)                             │
+└──────────────────────────────────────────────────────────────────────────┘
+
+.\SETUP_DATABASE.bat
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: Start Server (Run in first terminal)                            │
+└──────────────────────────────────────────────────────────────────────────┘
+
+.\RUN_SERVER.bat
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: Start Client (Run in second terminal)                           │
+└──────────────────────────────────────────────────────────────────────────┘
+
+.\RUN_CLIENT.bat
+
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                      ALTERNATIVE: MAVEN COMMANDS                         ║
+║                  (No .\ needed - works in any shell)                     ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Setup Database:
+mvn exec:java "-Dexec.mainClass=com.lfp.util.DatabaseSetup"
+
+Start Server:
+mvn exec:java "-Dexec.mainClass=com.lfp.server.LFPServer"
+
+Start Client:
+mvn exec:java "-Dexec.mainClass=com.lfp.client.LFPClientApp"
+
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         TEST CREDENTIALS                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Admin:
+  Email:    admin@lfp.com
+  Password: admin123
+
+User:
+  Email:    user@lfp.com
+  Password: user123
+
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    POWERSHELL vs COMMAND PROMPT                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+PowerShell:          Command Prompt:
+.\SETUP_DATABASE.bat SETUP_DATABASE.bat
+.\RUN_SERVER.bat     RUN_SERVER.bat
+.\RUN_CLIENT.bat     RUN_CLIENT.bat
+
+💡 Notice: PowerShell needs .\ prefix, Command Prompt doesn't!
+
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         QUICK COPY-PASTE                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Copy these three commands and run them one by one:
+
+1. .\SETUP_DATABASE.bat
+2. .\RUN_SERVER.bat
+3. .\RUN_CLIENT.bat
+
+Then login with: admin@lfp.com / admin123
