@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.lfp.ui.AdminDashboardController"
+            stylesheets="@../css/style.css"
+            styleClass="root">
+    
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox styleClass="navbar" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            
+            <Label text="WorkSpot Admin" styleClass="logo"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Button text="Dashboard" styleClass="nav-button-active"/>
+            <Button text="Manage Places" onAction="#handleManagePlaces" styleClass="nav-button"/>
+            <Button text="Manage Reports" onAction="#handleManageReports" styleClass="nav-button"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="nav-button"/>
+        </HBox>
+    </top>
+    
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="30" styleClass="content-container">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+            
+            <!-- Header -->
+            <Label text="Admin Dashboard" styleClass="page-title"/>
+            
+            <!-- Loading Indicator -->
+            <ProgressIndicator fx:id="loadingIndicator" visible="false" managed="false"/>
+            
+            <!-- Error Message -->
+            <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"/>
+            
+            <!-- Stats Cards -->
+            <GridPane hgap="20" vgap="20">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33.33"/>
+                    <ColumnConstraints percentWidth="33.33"/>
+                    <ColumnConstraints percentWidth="33.33"/>
+                </columnConstraints>
+                
+                <!-- Pending Places Card -->
+                <VBox styleClass="stat-card" spacing="10" GridPane.columnIndex="0">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Pending Places" styleClass="stat-label"/>
+                    <Label fx:id="pendingPlacesLabel" text="0" styleClass="stat-value"/>
+                    <Button text="Review Now" onAction="#handleManagePlaces" styleClass="secondary-button"/>
+                </VBox>
+                
+                <!-- Pending Reports Card -->
+                <VBox styleClass="stat-card" spacing="10" GridPane.columnIndex="1">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Pending Reports" styleClass="stat-label"/>
+                    <Label fx:id="pendingReportsLabel" text="0" styleClass="stat-value"/>
+                    <Button text="Review Now" onAction="#handleManageReports" styleClass="secondary-button"/>
+                </VBox>
+                
+                <!-- Total Places Card -->
+                <VBox styleClass="stat-card" spacing="10" GridPane.columnIndex="2">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Total Places" styleClass="stat-label"/>
+                    <Label fx:id="totalPlacesLabel" text="0" styleClass="stat-value"/>
+                </VBox>
+            </GridPane>
+            
+            <!-- Quick Actions -->
+            <VBox spacing="15">
+                <Label text="Quick Actions" styleClass="section-title"/>
+                
+                <HBox spacing="15">
+                    <Button text="Manage Places" onAction="#handleManagePlaces" 
+                            styleClass="primary-button" prefWidth="200"/>
+                    <Button text="Manage Reports" onAction="#handleManageReports" 
+                            styleClass="primary-button" prefWidth="200"/>
+                </HBox>
+            </VBox>
+            
+            <!-- Recent Activity -->
+            <VBox spacing="15" VBox.vgrow="ALWAYS">
+                <Label text="Recent Pending Places" styleClass="section-title"/>
+                
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="recentPlacesContainer" spacing="10"/>
+                </ScrollPane>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>
